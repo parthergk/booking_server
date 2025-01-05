@@ -20,12 +20,12 @@ app.post("/api/book/create", async (req, res) => {
     return res.status(400).json({ message: "All fields are required." });
   }
 
+  console.log("date and time ", date + time);
+  
+
   const combineDateAndTime = (date, time) => {
-    const dateObj = new Date(date);
-    const [hours, minutes] = time
-      .split(/[:\s]/)
-      .map((val, idx) => (idx === 0 ? parseInt(val) + (time.includes("PM") ? 12 : 0) : parseInt(val)));
-    dateObj.setHours(hours % 24, minutes, 0, 0);
+    const dateTime = `${date}, ${time}`
+    const dateObj = new Date(dateTime);
     return dateObj;
   };
 
